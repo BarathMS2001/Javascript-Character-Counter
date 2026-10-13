@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Counter</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+            padding: 0px;
+            margin: 0px;
+            overflow-y: hidden;
+
+        }
+
+        textarea {
+            width: 100%;
+            max-width: 500px;
+            height: 120px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #counter {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        #warning {
+            margin-top: 5px;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="image" style="position:relative;z-index:1;">
+
+        <img style="width:1537px" src="./images/finalimage.jpg">
+
+
+        <div
+            style="position:absolute; z-index:2; top:22%;left:32%;background-color:whitesmoke; height:270px; width: 550px;">
+            <h3 style="font-size: larger; color: green;">Message Box</h3>
+
+            <textarea id="messageBox" placeholder="Type your message here..."></textarea>
+
+            <div id="counter">0/200 characters</div>
+            <div id="warning"></div>
+
+        </div>
+    </div>
+
+    <script>
+        const textarea = document.getElementById("messageBox");
+        const counter = document.getElementById("counter");
+        const warning = document.getElementById("warning");
+
+        const maxChars = 200;
+
+        textarea.addEventListener("input", function () {
+            let text = textarea.value;
+
+            if (text.length > maxChars) {
+                textarea.value = text.substring(0, maxChars);
+                warning.textContent = "Character limit reached!";
+            } else {
+                warning.textContent = "";
+            }
+
+            const currentLength = textarea.value.length;
+            const remaining = maxChars - currentLength;
+
+            counter.textContent = `${currentLength}/${maxChars} characters (${remaining} remaining)`;
+        });
+    </script>
+
+</body>
+
+</html>
